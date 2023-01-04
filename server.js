@@ -3,6 +3,9 @@ const app = express();
 const jsonData = require("./pokedex.json");
 const cors = require("cors");
 
+//allow CORS in React
+app.use(cors({ origin: true }));
+
 const PORT = process.env.PORT || 9000;
 
 app.use(express.json());
