@@ -5,6 +5,8 @@ const cors = require("cors");
 
 const PORT = process.env.PORT || 9000;
 
+app.use(cors({ origin: true }));
+
 app.use(express.json());
 
 app.get("/pokemon", (req, res) => {
