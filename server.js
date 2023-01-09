@@ -4,6 +4,9 @@ const cors = require("cors");
 require("dotenv").config;
 const mongoose = require("mongoose");
 
+//allow CORS in React
+app.use(cors({ origin: true }));
+
 const PORT = process.env.PORT || 9000;
 
 app.use(cors({ origin: true }));
