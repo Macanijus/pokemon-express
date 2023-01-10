@@ -3,25 +3,23 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const PokemonSchema = new Schema({
-  id: {
-    type: Number,
-  },
+  id: Number,
   name: {
     english: {
       type: String,
-      required: true,
+      // required: true,
     },
     japanese: {
       type: String,
-      required: true,
+      // required: true,
     },
     chinese: {
       type: String,
-      required: true,
+      // required: true,
     },
     french: {
       type: String,
-      required: true,
+      // required: true,
     },
   },
   type: [String],
@@ -29,27 +27,27 @@ const PokemonSchema = new Schema({
   base: {
     HP: {
       type: Number,
-      required: true,
+      // required: true,
     },
     Attack: {
       type: Number,
-      required: true,
+      // required: true,
     },
     Defense: {
       type: Number,
-      required: true,
+      // required: true,
     },
     "Sp. Attack": {
       type: Number,
-      required: true,
+      // required: true,
     },
     "Sp. Defense": {
       type: Number,
-      required: true,
+      // required: true,
     },
     Speed: {
       type: Number,
-      required: true,
+      // required: true,
     },
   },
 });

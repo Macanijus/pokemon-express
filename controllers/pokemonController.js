@@ -14,7 +14,7 @@ const getAllPokemons = async (req, res) => {
 
 const getOnePokemon = async (req, res) => {
   try {
-    const pokemon = await Pokemons.findById(req.params.id);
+    const pokemon = await Pokemons.where("id").equals(req.params.id);
     res.status(200).json({
       success: true,
       pokemon,
