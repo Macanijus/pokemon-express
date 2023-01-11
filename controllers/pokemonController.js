@@ -2,7 +2,7 @@ const Pokemons = require("../schemas/Pokemons");
 
 const getAllPokemons = async (req, res) => {
   try {
-    const pokemons = await Pokemons.find();
+    const pokemons = await Pokemons.find().select("name");
     res.status(200).json({
       success: true,
       pokemons,
@@ -13,11 +13,55 @@ const getAllPokemons = async (req, res) => {
 };
 
 const getOnePokemon = async (req, res) => {
+  console.log(req.params.id);
+  try {
+    const pokemon = await Pokemons.findById(req.params.id);
+    res.status(200).json({
+      success: true,
+      pokemon,
+    });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
+const getOnePokemonById = async (req, res) => {
+  console.log(req.params.id);
   try {
     const pokemon = await Pokemons.where("id").equals(req.params.id);
     res.status(200).json({
       success: true,
       pokemon,
+    });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
+const getPokemonInfo = async (req, res) => {
+  console.log(req.params.id);
+  try {
+    const pokemonInfo = await Pokemons.findById(req.params.id).select(
+      req.params.info
+    );
+    res.status(200).json({
+      success: true,
+      pokemonInfo,
+    });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
+const getPokemonInfoById = async (req, res) => {
+  console.log(req.params.id);
+  try {
+    const pokemonInfo = await Pokemons.where("id")
+      .equals(req.params.id)
+      .select(req.params.info);
+    res.status(200).json({
+      success: true,
+      pokemonInfo,
     });
   } catch (error) {
     res.status(500).json({ error });
@@ -70,4 +114,5 @@ module.exports = {
   createPokemon,
   updatePokemon,
   deletePokemon,
+  getPokemonInfo,
 };
