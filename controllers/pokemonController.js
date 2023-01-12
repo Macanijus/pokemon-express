@@ -13,9 +13,23 @@ const getAllPokemons = async (req, res) => {
 };
 
 const getOnePokemon = async (req, res) => {
-  console.log(req.params.id);
+  /* console.log(req.params.id); */
   try {
-    const pokemon = await Pokemons.findById(req.params.id);
+    const pokemon1 = await Pokemons.findById(req.params.id);
+    const pokemon2 = await Pokemons.aggregate([{ $sample: { size: 1 } }]);
+    res.status(200).json({
+      success: true,
+      pokemon1: pokemon1,
+      pokemon2: pokemon2,
+    });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
+const getRandoPokemon = async (req, res) => {
+  try {
+    const pokemon = await Pokemons.rand();
     res.status(200).json({
       success: true,
       pokemon,
@@ -115,4 +129,5 @@ module.exports = {
   updatePokemon,
   deletePokemon,
   getPokemonInfo,
+  getRandoPokemon,
 };
