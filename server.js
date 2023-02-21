@@ -17,6 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 // pokemon routes
 const pokemons = require("./routes/pokemonRoutes");
 
+app.get("/", (req, res) => {
+  res.send("Welcome");
+});
+
 app.use(express.json());
 
 // Get the default connection
